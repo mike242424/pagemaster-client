@@ -1,0 +1,225 @@
+@font-face {
+  font-family: "Wizardry Night";
+  src: url('../src/assets/fonts/Wizardry_Night_Font.ttf') format('truetype');
+}
+
+body {
+  font-family: serif;
+  font-size: medium;
+  background-color:  #FAFAFB;
+  font-family: "Wizardry Night", sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+
+  @media (max-width: 767.2px) {
+      font-size: 30px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+}
+}
+
+a.btn {
+  font-size: medium;
+  font-weight: bold;
+}
+
+button.btn {
+  font-size: medium;
+  font-weight: bold;
+}
+
+input.form-control {
+  font-size: medium;
+  font-weight: bold;
+}
+
+input.large-text {
+  font-size:medium;
+  font-weight: bold;
+}
+
+strong.large-text {
+  font-size:medium;
+  font-weight: bold;
+}
+
+.custom-navbar {
+  background-color: #50a2c6;
+  border-radius: 0;
+}
+
+.add-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+
+.fa-book {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1))
+}
+
+.button_color_1 {
+  background-color: #f2ab4f;
+  color: #FFF
+}
+
+.button_color_1:hover {
+  background-color: #42cd93;
+}
+
+.button_color_2 {
+  background-color: #1F5DB0;
+  color: #FFF
+}
+
+.button_color_2:hover {
+  background-color: #e04d77;
+}
+
+.button_color_3 {
+  background-color: #50a2c6;
+  color: #FFF
+}
+
+.button_color_3:hover {
+  background-color: #C6BA50;
+}
+
+.button_color_4 {
+  background-color: #42cd93;
+  color: #FFF
+}
+
+.button_color_4:hover {
+  background-color: #f2ab4f ;
+}
+
+.navbar-hover-color:hover {
+  color: #f2ab4f;
+
+}
+
+input.form-control:focus {
+  border-color: #50a2c6;
+  box-shadow: 0 0 5px 1px #50a2c6;
+}
+
+.title_1 {
+  display: inline-block;
+  transition: transform 0.3s;
+  transform-origin: top center;
+  font-size: 140px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+
+  @media (max-width: 800px) {
+    font-size: 100px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 60px;
+  }
+}
+
+.title_1:hover {
+  transform: translateY(-5px) scale(1.2);
+  font-size: 140px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.title_2 {
+  display: inline-block;
+  font-size: 42px;
+  transition: transform 0.3s;
+  transform-origin: top center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.title_2:hover {
+  transform: scale(1.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 800px) {
+  .title_1 {
+    font-size: 100px;
+  }
+
+  .title_1:hover {
+    font-size: 100px;
+  }
+
+  .title_2 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title_1 {
+    font-size: 60px;
+  }
+
+  .title_1:hover {
+    font-size: 60px;
+  }
+
+  .title_2 {
+    font-size: 25px;
+  }
+}
+
+@keyframes popEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.nav_hover {
+  display: inline-block;
+  transition: transform 0.3s;
+  transform-origin: top center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.nav-hover:hover {
+  transform: scale(1.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.card-centered {
+  justify-content: center;
+}
+
+div.card {
+  width: 26rem;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 2s ease-in forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.dropdown-text{
+  color: #000;
+}
+
+.dropdown-text:hover {
+  color: #f2ab4f;
+}
