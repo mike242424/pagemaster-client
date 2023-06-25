@@ -28,9 +28,6 @@ export default function RecommendationBook({ book }) {
         },
       },
     ],
-    onCompleted: () => {
-      navigate("/book-list");
-    },
   });
 
   const handleClick = () => {
@@ -43,6 +40,8 @@ export default function RecommendationBook({ book }) {
         },
       },
     });
+
+    navigate("/book-list");
   };
 
   if (loading) return <Spinner />;
