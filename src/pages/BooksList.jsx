@@ -7,6 +7,7 @@ import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 import UnauthError from "../components/UnauthError";
+import Oops from "../components/Oops";
 
 export default function Books() {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export default function Books() {
   });
 
   if (loading) return <Spinner />;
-  if (error) <p>Something went wrong</p>;
+  if (error) return <Oops />;
 
   return (
     <>

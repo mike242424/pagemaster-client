@@ -5,6 +5,7 @@ import { GET_BOOKS } from "../graphql/queries";
 import { useNavigate } from "react-router-dom";
 import { formatAuthors } from "../utils/formatAuthors";
 import Spinner from "./Spinner";
+import Oops from "./Oops";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 
@@ -15,7 +16,7 @@ export default function GoogleBook({ book }) {
 
   const { user } = useContext(AuthContext);
 
-  const [addBook, { loading }] = useMutation(ADD_BOOK, {
+  const [addBook, { loading, error }] = useMutation(ADD_BOOK, {
     variables: {
       bookInput: {
         title: book.volumeInfo.title,
@@ -53,6 +54,7 @@ export default function GoogleBook({ book }) {
   };
 
   if (loading) return <Spinner />;
+  if (error) return <Oops />;
 
   return (
     <>

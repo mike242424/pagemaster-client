@@ -6,6 +6,7 @@ import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 import UnauthError from "../components/UnauthError";
+import Oops from "../components/Oops";
 
 export default function HardcoverFictionRecommendations() {
   const { data, loading, error } = useQuery(
@@ -14,7 +15,7 @@ export default function HardcoverFictionRecommendations() {
   const { user } = useContext(AuthContext);
 
   if (loading) return <Spinner />;
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <Oops />;
 
   return (
     <>

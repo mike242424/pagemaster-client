@@ -7,28 +7,29 @@ import GoogleBook from "../components/GoogleBook";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 import UnauthError from "../components/UnauthError";
+import Oops from "../components/Oops";
 
 export default function BookSearch() {
   const [query, setQuery] = useState("");
   let [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const { user } = useContext(AuthContext);
 
-  const [getGoogleBooks, { data, loading, error, fetchMore }] = useLazyQuery(
+  const [getGoogleBooks, { data, loading, error }] = useLazyQuery(
     GET_GOOGLE_BOOKS,
     {
       variables: {
         query,
         page: currentPage,
       },
+      onError({ graphQLErrors }) {
+        setErrors(graphQLErrors);
+      },
       onCompleted: (data) => {
         setTotalPages(Math.ceil(data.getGoogleBooksSearch.totalItems / 15));
-        console.log(data);
-      },
-      onError: (err) => {
-        console.log(err);
       },
     }
   );
@@ -38,8 +39,10 @@ export default function BookSearch() {
 
     getGoogleBooks({ variables: { query, page: 1 } });
 
-    setSearchQuery(query);
-    setQuery("");
+    if (errors.length === 0) {
+      setSearchQuery(query);
+      setQuery("");
+    }
   };
 
   const goToNextPage = () => {
@@ -57,7 +60,7 @@ export default function BookSearch() {
   };
 
   if (loading) return <Spinner />;
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <Oops />;
 
   return (
     <>
@@ -90,11 +93,13 @@ export default function BookSearch() {
               </form>
             </div>
           </div>
-          {data ? (
+          {data &&
+          data.getGoogleBooksSearch.items &&
+          data.getGoogleBooksSearch.items !== null ? (
             <div className="row justify-content-center mb-5">
               <div className="col-auto">
                 <button
-                  className="btn button_color_3 mr-2"
+                  className="btn button_color_3 me-4"
                   onClick={goToPreviousPage}
                   disabled={currentPage === 1}
                 >
@@ -112,11 +117,14 @@ export default function BookSearch() {
           ) : (
             ""
           )}
-
           <div className="row card-centered">
-            {data?.getGoogleBooksSearch.items.map((book) => {
-              return <GoogleBook book={book} key={Math.random() * 100000} />;
-            })}
+            {data &&
+            data.getGoogleBooksSearch.totalItems &&
+            data.getGoogleBooksSearch.items
+              ? data.getGoogleBooksSearch.items.map((book) => (
+                  <GoogleBook book={book} key={Math.random() * 100000} />
+                ))
+              : ""}
           </div>
         </div>
       ) : (

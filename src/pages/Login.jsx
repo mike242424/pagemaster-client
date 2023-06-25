@@ -94,7 +94,14 @@ export default function Login() {
                   />
                   {errors.length > 0 ? (
                     <div>
-                      <ul style={{ border: "1px solid red", padding: "10px" }}>
+                      <ul
+                        style={{
+                          border: "1px solid red",
+                          borderRadius: "3px",
+                          padding: "10px",
+                          marginBottom: "16px",
+                        }}
+                      >
                         {errors.map((error) => {
                           return (
                             <li

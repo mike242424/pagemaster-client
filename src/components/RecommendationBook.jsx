@@ -4,6 +4,7 @@ import { GET_BOOKS } from "../graphql/queries";
 import { useNavigate } from "react-router-dom";
 import { capitalizeLettersOfFirstWord } from "../utils/capitalizeFirstLetterOfWords";
 import Spinner from "./Spinner";
+import Oops from "./Oops";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 
@@ -11,7 +12,7 @@ export default function RecommendationBook({ book }) {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-  const [addBook, { loading }] = useMutation(ADD_BOOK, {
+  const [addBook, { loading, error }] = useMutation(ADD_BOOK, {
     variables: {
       bookInput: {
         title: capitalizeLettersOfFirstWord(book.title),
@@ -45,6 +46,7 @@ export default function RecommendationBook({ book }) {
   };
 
   if (loading) return <Spinner />;
+  if (error) return <Oops />;
 
   return (
     <>

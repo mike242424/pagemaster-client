@@ -8,6 +8,7 @@ import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 import UnauthError from "../components/UnauthError";
 import Spinner from "../components/Spinner";
+import Oops from "../components/Oops";
 
 export default function AddBook() {
   const [title, setTitle] = useState("");
@@ -17,7 +18,7 @@ export default function AddBook() {
 
   const navigate = useNavigate();
 
-  const [addBook, { loading }] = useMutation(ADD_BOOK, {
+  const [addBook, { loading, error }] = useMutation(ADD_BOOK, {
     variables: {
       bookInput: {
         title,
@@ -61,6 +62,7 @@ export default function AddBook() {
   };
 
   if (loading) return <Spinner />;
+  if (error) return <Oops />;
 
   return (
     <>

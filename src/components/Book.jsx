@@ -4,11 +4,13 @@ import { GET_BOOKS } from "../graphql/queries";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
+import Spinner from "./Spinner";
+import Oops from "./Oops";
 
 export default function Book({ book }) {
   const { user } = useContext(AuthContext);
 
-  const [deleteBook] = useMutation(DELETE_BOOK, {
+  const [deleteBook, { loading, error }] = useMutation(DELETE_BOOK, {
     variables: {
       id: book.id,
     },
@@ -27,6 +29,9 @@ export default function Book({ book }) {
       id: book.id,
     });
   };
+
+  if (loading) return <Spinner />;
+  if (error) return <Oops />;
 
   return (
     <tr className="col">

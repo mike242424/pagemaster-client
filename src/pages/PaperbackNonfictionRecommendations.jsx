@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import { GET_PAPERBACK_NON_FICTION_RECOMMENDATIONS } from "../graphql/queries";
 import RecommendationBook from "../components/RecommendationBook";
 import Spinner from "../components/Spinner";
+import Oops from "../components/Oops";
 import { AuthContext } from "../context/authContext.js";
 import { useContext } from "react";
 import UnauthError from "../components/UnauthError";
@@ -14,7 +15,7 @@ export default function PaperbackNonfictionRecommendations() {
   const { user } = useContext(AuthContext);
 
   if (loading) return <Spinner />;
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <Oops />;
 
   return (
     <>
