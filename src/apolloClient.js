@@ -1,15 +1,15 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-const HttpLink = createHttpLink({
-  uri: "https://pagemaster-server.onrender.com",
+const httpLink = createHttpLink({
+  uri: 'https://pagemaster-server.onrender.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: localStorage.getItem("token") || "",
+      authorization: localStorage.getItem('token') || '',
     },
   };
 });
@@ -29,8 +29,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
-  link: authLink.concat(HttpLink),
+  link: authLink.concat(httpLink),
   cache,
 });
 
